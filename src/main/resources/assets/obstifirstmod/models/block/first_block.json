@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "obstifirstmod:block/first_block_side",
+    "down": "obstifirstmod:block/first_block_side",
+    "up": "obstifirstmod:block/first_block_side",
+    "east": "obstifirstmod:block/first_block_side",
+    "west": "obstifirstmod:block/first_block_side",
+    "north": "obstifirstmod:block/first_block",
+    "south": "obstifirstmod:block/first_block_side"
+  }
+}

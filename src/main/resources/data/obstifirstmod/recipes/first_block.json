@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "lll",
+    "lsl",
+    "lll"
+  ],
+  "key": {
+    "l": {
+      "tag": "forge:gems/lapis"
+    },
+    "s": {
+      "tag": "forge:stone"
+    }
+  },
+  "result": {
+    "item": "obstifirstmod:first_block"
+  }
+}

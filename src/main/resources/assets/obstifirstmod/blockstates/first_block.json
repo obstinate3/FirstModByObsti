@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "facing=north": { "model": "obstifirstmod:block/first_block" },
+    "facing=south": { "model": "obstifirstmod:block/first_block", "y": 180 },
+    "facing=west": { "model": "obstifirstmod:block/first_block", "y":  270},
+    "facing=east": { "model": "obstifirstmod:block/first_block", "y": 90},
+    "facing=up": { "model": "obstifirstmod:block/first_block", "x": 270 },
+    "facing=down": { "model": "obstifirstmod:block/first_block", "x": 90 }
+  }
+}
