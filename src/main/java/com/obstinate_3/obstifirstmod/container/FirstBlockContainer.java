@@ -1,6 +1,7 @@
 package com.obstinate_3.obstifirstmod.container;
 
 import com.obstinate_3.obstifirstmod.block.ModBlocks;
+import com.obstinate_3.obstifirstmod.tileentity.FirstBlockTile;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
@@ -20,22 +21,36 @@ public class FirstBlockContainer extends Container {
     private TileEntity tileEntity;
     private PlayerEntity playerEntity;
     private IItemHandler playerInventory;
+    protected final World world;
 
     public FirstBlockContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player) {
         super(ModContainer.FIRST_BLOCK, windowId);
         tileEntity = world.getTileEntity(pos);
         this.playerEntity = player;
         this.playerInventory = new InvWrapper(playerInventory);
-
+        this.world = world;
         tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
-            addSlot(new SlotItemHandler(h, 0,64, 23));
-            addSlot(new SlotItemHandler(h, 0,98, 23));
+            addSlot(new SlotItemHandler(h, FirstBlockTile.INPUT,64, 23));
+            addSlot(new SlotItemHandler(h, FirstBlockTile.OUTPUT,98, 23));
+
         });
+
+
         layoutPlayerInventorySlots(10,70);
     }
     @Override
     public boolean canInteractWith(PlayerEntity playerIn) {
         return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos()), playerEntity, ModBlocks.FIRST_BLOCK);
+    }
+
+    protected IWorldPosCallable getWorldPos()
+    {
+        if (tileEntity == null)
+        {
+            return IWorldPosCallable.DUMMY;
+        }
+
+        return IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos());
     }
 
     private int addSlotRange(IItemHandler handler, int index, int x, int y, int amount, int dx) {
@@ -60,5 +75,10 @@ public class FirstBlockContainer extends Container {
 
         topRow += 58;
         addSlotRange(playerInventory, 0 ,leftCol,topRow,9,18);
+    }
+
+    protected void addSlot(IItemHandler handler, int index, int x, int y)
+    {
+        addSlot(new SlotItemHandler(handler, index, x, y));
     }
 }
